@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ট্রানজেকশন আইডি দিন</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e3f2fd;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            background-color: #d32f2f;
+            color: white;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-weight: 700;
+        }
+
+        input[type="text"] {
+            width: 90%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #ffeb3b; /* ফোকাসে সীমা রঙ পরিবর্তন */
+            outline: none;
+        }
+
+        p {
+            font-size: 14px;
+            margin: 10px 0;
+        }
+
+        .contact-info {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .buttons button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        .buttons button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        button#copyButton {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:nth-child(1) {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        button:nth-child(2) {
+            background-color: #f44336;
+            color: white;
+        }
+
+        button:nth-child(3) {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .result-message {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>ট্রানজেকশন আইডি দিন</h2>
+        <input type="text" id="transactionId" placeholder="ট্রানজেকশন আইডি দিন" maxlength="12">
+        <p>*167# ডায়াল করে বা নগদ/বিকাশ এপস থেকে সেন্ডমানি করতে হবে।</p>
+        <p>টাকা পাঠিয়ে উপরের বক্সে ট্রানজেকশন আইডি দিয়ে Verify এ ক্লিক করুন।</p>
+        <p>শুধু মাত্র বিকাশ এবং নগদ এ টাকা পাঠাতে পারবেন।</p>
+        <p class="contact-info">Nagad/Bkash: 01581050857 <button id="copyButton">Copy</button></p>
+        <div class="buttons">
+            <button onclick="verifyTransaction()">Verify</button>
+            <button onclick="payByCard()">Pay by card</button>
+        </div>
+        <p id="result" class="result-message"></p>
+    </div>
+
+    <script>
+        const successfulTransactions = ["TXN123456", "TXN789012", "TXN345678"]; // ডেমো ডাটা
+
+        function verifyTransaction() {
+            const transactionId = document.getElementById("transactionId").value.trim();
+            const result = document.getElementById("result");
+
+            if (!transactionId) {
+                result.innerText = "দয়া করে ট্রানজেকশন আইডি প্রবেশ করুন!";
+                result.style.color = "orange"; // ইনপুট ফাঁকা থাকলে সতর্কতা
+                return;
+            }
+
+            if (successfulTransactions.includes(transactionId)) {
+                result.innerText = "পেমেন্ট সফলভাবে যাচাই হয়েছে।";
+                result.style.color = "green";
+            } else {
+                result.innerText = "ভুল ট্রানজেকশন আইডি!";
+                result.style.color = "yellow"; // ভুল ট্রানজেকশন আইডি হলুদ রঙে হবে
+            }
+        }
+
+        function goBack() {
+            alert("পূর্ববর্তী পৃষ্ঠায় ফিরে যান");
+            // বাস্তব ক্ষেত্রে, এখানে পূর্ববর্তী পৃষ্ঠার লিংক দেয়া যেতে পারে
+        }
+
+        function payByCard() {
+            alert("কার্ড সিস্টেম চালু নেই বর্তমানে."); // কার্ড সিস্টেম চালু নেই বার্তা
+            // বাস্তব ক্ষেত্রে, এখানে কার্ড পেমেন্টের লিংক যুক্ত করা যেতে পারে
+        }
+
+        document.getElementById("copyButton").addEventListener("click", () => {
+            const contactNumber = "01581050857";
+            navigator.clipboard.writeText(contactNumber);
+            alert("নাম্বার কপি করা হয়েছে: " + contactNumber);
+        });
+    </script>
+</body>
+</html>
